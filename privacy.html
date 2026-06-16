@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Bella</title>
+  <link rel="icon" href="bella-logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(160deg, #fce4f0 0%, #ede9fe 100%);
+      min-height: 100vh;
+      color: #3b1a2e;
+      padding: 0 0 60px;
+    }
+
+    /* ── Header ── */
+    .pp-header {
+      background: linear-gradient(135deg, #f472b6, #c084fc);
+      padding: 32px 24px 28px;
+      text-align: center;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 20px rgba(244,114,182,0.3);
+    }
+
+    .pp-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .pp-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+
+    .pp-header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .pp-header .updated {
+      font-size: 12px;
+      opacity: 0.8;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ── Back link ── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .back-btn:hover { color: #fff; }
+
+    /* ── Content ── */
+    .pp-content {
+      max-width: 720px;
+      margin: 32px auto 0;
+      padding: 0 20px;
+    }
+
+    /* ── Intro card ── */
+    .intro-card {
+      background: #fff8fc;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid #f0cce5;
+      box-shadow: 0 4px 20px rgba(244,114,182,0.1);
+      margin-bottom: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .intro-icon { font-size: 32px; flex-shrink: 0; }
+    .intro-text { font-size: 13px; color: #b07a9e; font-weight: 500; line-height: 1.7; }
+    .intro-text strong { color: #ec4899; font-weight: 700; }
+
+    /* ── Section ── */
+    .pp-section {
+      background: #fff8fc;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid #f0cce5;
+      box-shadow: 0 2px 12px rgba(244,114,182,0.08);
+      margin-bottom: 16px;
+    }
+
+    .pp-section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f0cce5;
+    }
+
+    .pp-section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #f472b6, #c084fc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .pp-section h2 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #3b1a2e;
+      letter-spacing: -0.3px;
+    }
+
+    .pp-section p {
+      font-size: 13px;
+      color: #7a4a6a;
+      font-weight: 500;
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .pp-section p:last-child { margin-bottom: 0; }
+
+    .pp-section ul {
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    .pp-section ul li {
+      font-size: 13px;
+      color: #7a4a6a;
+      font-weight: 500;
+      line-height: 1.7;
+      padding: 4px 0 4px 20px;
+      position: relative;
+    }
+
+    .pp-section ul li::before {
+      content: "💜";
+      position: absolute;
+      left: 0;
+      font-size: 11px;
+      top: 6px;
+    }
+
+    .highlight {
+      background: #fce7f3;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 10px 0;
+      border-left: 3px solid #f472b6;
+      font-size: 13px;
+      color: #b07a9e;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .highlight strong { color: #ec4899; }
+
+    /* ── Contact card ── */
+    .contact-card {
+      background: linear-gradient(135deg, #f472b6, #c084fc);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      color: #fff;
+      margin-top: 24px;
+    }
+    .contact-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+    .contact-card p  { font-size: 13px; opacity: 0.9; font-weight: 500; margin-bottom: 16px; line-height: 1.6; }
+    .contact-card a  {
+      display: inline-block;
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 99px;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      transition: background 0.2s;
+    }
+    .contact-card a:hover { background: rgba(255,255,255,0.32); }
+
+    /* ── Footer ── */
+    .pp-footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 12px;
+      color: #b07a9e;
+      font-weight: 500;
+    }
+    .pp-footer a { color: #ec4899; text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <div class="pp-header" style="position:relative;">
+    <a href="/" class="back-btn">← Back</a>
+    <div class="pp-header-inner">
+      <img src="bella-logo.png" alt="Bella" class="pp-logo" onerror="this.style.display='none'">
+      <h1>Privacy Policy</h1>
+    </div>
+    <div class="updated">Last updated: June 2026</div>
+  </div>
+
+  <div class="pp-content">
+
+    <!-- Intro -->
+    <div class="intro-card">
+      <div class="intro-icon">🌸</div>
+      <div class="intro-text">
+        Welcome to <strong>Bella</strong>. We take your privacy seriously. This policy explains what data we collect, how we use it, and your rights. By using Bella, you agree to this policy. If you have any questions, contact us at <strong>user.alpha0x44@gmail.com</strong>.
+      </div>
+    </div>
+
+    <!-- 1. Who we are -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">👤</div>
+        <h2>1. Who We Are</h2>
+      </div>
+      <p>Bella is an AI companion app developed and operated as an independent project. For any privacy-related questions or requests, you can reach us at:</p>
+      <div class="highlight"><strong>Email:</strong> user.alpha0x44@gmail.com</div>
+    </div>
+
+    <!-- 2. What we collect -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">📋</div>
+        <h2>2. What Data We Collect</h2>
+      </div>
+      <p>We collect only the minimum data needed to provide the Bella experience:</p>
+      <ul>
+        <li><strong>Account data</strong> — your name, email address, and password (stored securely via Firebase Auth)</li>
+        <li><strong>Profile data</strong> — your display name, birthday (optional), and avatar preference</li>
+        <li><strong>Usage data</strong> — message count, login streak, hearts balance, and premium status</li>
+        <li><strong>Chat history</strong> — stored locally on your device only (localStorage), never on our servers</li>
+        <li><strong>Gallery images</strong> — stored locally on your device only</li>
+        <li><strong>Settings</strong> — theme, sound, and notification preferences (stored locally)</li>
+      </ul>
+      <div class="highlight">💜 <strong>Your chat messages are never stored on our servers.</strong> They live only on your device and are deleted when you clear your chat.</div>
+    </div>
+
+    <!-- 3. How we use it -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">⚙️</div>
+        <h2>3. How We Use Your Data</h2>
+      </div>
+      <p>We use your data only to:</p>
+      <ul>
+        <li>Create and manage your Bella account</li>
+        <li>Track your login streak and reward bonus hearts</li>
+        <li>Remember your preferences and settings across sessions</li>
+        <li>Show birthday surprises if you provide your birthdate</li>
+        <li>Manage your hearts balance and premium status</li>
+      </ul>
+      <p>We do <strong>not</strong> use your data for advertising profiling, sell it to third parties, or share it with anyone outside of the services listed below.</p>
+    </div>
+
+    <!-- 4. Third party -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">🔗</div>
+        <h2>4. Third-Party Services</h2>
+      </div>
+      <p>Bella uses the following third-party services to function:</p>
+      <ul>
+        <li><strong>Firebase (Google)</strong> — authentication and user data storage. Governed by <a href="https://firebase.google.com/support/privacy" target="_blank" style="color:#ec4899;font-weight:700;">Google's Privacy Policy</a></li>
+        <li><strong>Pollinations AI</strong> — image generation. Images are generated via public API prompts. No personal data is sent.</li>
+        <li><strong>Hugging Face</strong> — chat AI and text-to-speech APIs. Messages are sent to process responses but are not stored by us.</li>
+        <li><strong>Google AdSense</strong> — display advertising. Google may use cookies to serve relevant ads. See <a href="https://policies.google.com/privacy" target="_blank" style="color:#ec4899;font-weight:700;">Google's ad privacy policy</a>.</li>
+        <li><strong>Google Fonts</strong> — typography. No personal data is collected.</li>
+      </ul>
+    </div>
+
+    <!-- 5. AI disclaimer -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">🤖</div>
+        <h2>5. AI Disclaimer</h2>
+      </div>
+      <p>Bella is powered by artificial intelligence. Please keep the following in mind:</p>
+      <ul>
+        <li>Bella can and does make mistakes. Responses may be inaccurate, incomplete, or outdated.</li>
+        <li>Bella is not a substitute for professional advice — medical, legal, financial, or otherwise.</li>
+        <li>Bella is a fictional AI companion and does not have feelings, consciousness, or real-world awareness.</li>
+        <li>Do not share sensitive personal information (passwords, financial details, ID numbers) in chat.</li>
+        <li>Generated images are AI-created and do not represent real people or places.</li>
+      </ul>
+      <div class="highlight">⚠️ <strong>Bella can make mistakes.</strong> Always verify important information from trusted sources.</div>
+    </div>
+
+    <!-- 6. Data retention -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">🗄️</div>
+        <h2>6. Data Retention & Deletion</h2>
+      </div>
+      <p>Your account data is retained for as long as your account is active. You can:</p>
+      <ul>
+        <li>Clear your chat history and gallery anytime using the 🗑️ button in the app</li>
+        <li>Request complete account deletion by emailing us at user.alpha0x44@gmail.com</li>
+        <li>We will process deletion requests within 14 days</li>
+      </ul>
+    </div>
+
+    <!-- 7. Cookies -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">🍪</div>
+        <h2>7. Cookies & Local Storage</h2>
+      </div>
+      <p>Bella uses browser <strong>localStorage</strong> (not cookies) to store your chat history, gallery, and settings on your device. This data never leaves your device unless you explicitly share it.</p>
+      <p>Google AdSense may use cookies for ad personalization. You can opt out via <a href="https://adssettings.google.com" target="_blank" style="color:#ec4899;font-weight:700;">Google Ad Settings</a>.</p>
+    </div>
+
+    <!-- 8. Children -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">👶</div>
+        <h2>8. Children's Privacy</h2>
+      </div>
+      <p>Bella is not intended for users under the age of 13. We do not knowingly collect personal data from children under 13. If you believe a child has provided us with personal data, please contact us immediately at user.alpha0x44@gmail.com and we will delete it promptly.</p>
+    </div>
+
+    <!-- 9. Your rights -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">⚖️</div>
+        <h2>9. Your Rights</h2>
+      </div>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access the personal data we hold about you</li>
+        <li>Correct inaccurate data</li>
+        <li>Request deletion of your data</li>
+        <li>Withdraw consent at any time by deleting your account</li>
+      </ul>
+      <p>To exercise any of these rights, email us at user.alpha0x44@gmail.com.</p>
+    </div>
+
+    <!-- 10. Changes -->
+    <div class="pp-section">
+      <div class="pp-section-header">
+        <div class="pp-section-icon">📝</div>
+        <h2>10. Changes to This Policy</h2>
+      </div>
+      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of Bella after changes means you accept the updated policy.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <h3>Questions or Concerns? 💜</h3>
+      <p>We're here to help. Reach out anytime and we'll respond as soon as possible.</p>
+      <a href="mailto:user.alpha0x44@gmail.com">✉️ user.alpha0x44@gmail.com</a>
+    </div>
+
+    <div class="pp-footer">
+      <p>© 2026 Bella AI Companion · <a href="/">Back to app</a></p>
+    </div>
+
+  </div>
+</body>
+</html>

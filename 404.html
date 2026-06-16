@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — Bella</title>
+  <link rel="icon" href="bella-logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #fce4f0 0%, #ede9fe 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: #fff8fc;
+      border-radius: 28px;
+      padding: 48px 36px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(244,114,182,0.18);
+      border: 1px solid #f0cce5;
+    }
+
+    .logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 30px rgba(244,114,182,0.4);
+      margin-bottom: 24px;
+    }
+
+    .logo-fallback {
+      font-size: 72px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f472b6, #c084fc);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #3b1a2e;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .sub {
+      font-size: 14px;
+      color: #b07a9e;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .maintenance-box {
+      background: #fce7f3;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      border: 1px solid #f0b8d8;
+    }
+
+    .maintenance-box p {
+      font-size: 13px;
+      color: #b07a9e;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .maintenance-box strong {
+      color: #ec4899;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #f472b6, #c084fc);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 32px;
+      border-radius: 99px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(244,114,182,0.35);
+      transition: opacity 0.2s, transform 0.2s;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-outline {
+      display: block;
+      background: transparent;
+      color: #ec4899;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 11px 32px;
+      border-radius: 99px;
+      text-decoration: none;
+      border: 2px solid #f0b8d8;
+      transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: #ec4899; }
+
+    .support {
+      margin-top: 24px;
+      font-size: 12px;
+      color: #b07a9e;
+      font-weight: 500;
+    }
+    .support a {
+      color: #ec4899;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .support a:hover { text-decoration: underline; }
+
+    .error-code {
+      font-size: 80px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f472b6, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="bella-logo.png" alt="Bella" class="logo" onerror="this.style.display='none'; document.getElementById('fb').style.display='block';">
+    <span id="fb" class="logo-fallback" style="display:none;">💜</span>
+
+    <div class="error-code">404</div>
+    <div class="badge">Page Not Found</div>
+
+    <h1>Bella can't find this page</h1>
+    <p class="sub">The page you're looking for doesn't exist or may have been moved. Don't worry — Bella's still here for you! 💜</p>
+
+    <div class="maintenance-box">
+      <p>🔧 If something seems broken, we might be doing <strong>scheduled maintenance</strong>. Check back soon or reach out to support.</p>
+    </div>
+
+    <a href="/" class="btn">💜 Take me home</a>
+    <a href="mailto:user.alpha0x44@gmail.com" class="btn-outline">✉️ Contact Support</a>
+
+    <div class="support">
+      Need help? <a href="mailto:user.alpha0x44@gmail.com">user.alpha0x44@gmail.com</a>
+    </div>
+  </div>
+</body>
+</html>

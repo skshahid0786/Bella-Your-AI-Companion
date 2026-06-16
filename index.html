@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f472b6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Bella — Your AI Companion</title>
+<link rel="icon" href="bella-logo.png" type="image/png">
+<link rel="apple-touch-icon" href="bella-logo.png">
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6763552907794945" crossorigin="anonymous"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-theme="rose">
+<div class="chat-container" id="chatContainer">
+
+  <!-- ── SPLASH ──────────────────────────────────────────── -->
+  <div class="splash-screen" id="splashScreen">
+   <img src="bella-logo.png" alt="Bella" class="splash-logo-img">
+<div class="splash-title">Bella  ✿</div>
+        <div class="splash-sub">Your AI companion</div>
+    <div class="splash-spinner"></div>
+  </div>
+
+  <!-- ── HEADER ──────────────────────────────────────────── -->
+  <div class="chat-header">
+    <div class="header-left">
+    <div class="header-avatar" id="headerAvatar" onclick="openProfile()" title="Edit profile" style="cursor:pointer;overflow:hidden;padding:0;">
+  <img src="bella-logo.png" alt="Bella" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+</div>
+      <div>
+        <div class="header-name" id="headerName">Bella ✿</div>
+        <div class="header-status" id="headerStatus">Your AI companion 💜</div>
+      </div>
+      <span class="premium-badge" id="premiumBadge" title="Upgrade to Premium" style="cursor:pointer;">★PRO</span>
+    </div>
+    <div class="header-right">
+      <span class="streak-pill hidden" id="streakPill">🔥 0d</span>
+      <div class="heart-pill" id="heartPill" onclick="openHeartsPanel()" title="Hearts">
+        💜 <span id="heartCountDisplay">—</span>
+      </div>
+      <button class="header-btn" onclick="openGallery()"   title="Gallery">🖼️</button>
+      <button class="header-btn" onclick="openSettings()"  title="Settings">⚙️</button>
+      <button class="header-btn" onclick="confirmClear()"  title="Clear chat">🗑️</button>
+    </div>
+  </div>
+
+  <!-- ── USER BAR ────────────────────────────────────────── -->
+  <div class="user-bar" id="userBar">
+    <div class="user-bar-left">
+      <span>🪪</span>
+      <span class="user-bar-name" id="userBarName"></span>
+    </div>
+    <button class="logout-btn" onclick="handleLogout()">Sign out</button>
+  </div>
+
+  <!-- ── MESSAGES ────────────────────────────────────────── -->
+  <div class="chat-messages" id="messages"></div>
+
+  <div class="bella-disclaimer">
+  💜 Bella is an AI and can make mistakes — don't share sensitive info.
+</div>
+  
+  <!-- ── INPUT ───────────────────────────────────────────── -->
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Message Bella..." autocomplete="off">
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()">Send 💜</button>
+  </div>
+
+  <!-- ── TOAST ───────────────────────────────────────────── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ── AUTH OVERLAY ────────────────────────────────────── -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-logo">💜</div>
+    <div class="auth-title">Chat with Bella</div>
+    <div class="auth-sub">Sign in to save chats, earn hearts,<br>and unlock your streak.</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin"  onclick="switchAuthTab('login')">Sign In</button>
+      <button class="auth-tab"        id="tabSignup" onclick="switchAuthTab('signup')">Sign Up</button>
+    </div>
+    <div class="auth-form">
+      <input class="auth-input" type="text"  id="authName"
+        placeholder="Your name" autocomplete="name" style="display:none;">
+      <label style="display:none; font-size:13px; font-weight:600; color:var(--muted); width:100%;" id="birthdateLabel">
+  🎂 Birthday (Optional — Bella will remember!)
+      <input class="auth-input" type="date" id="authBirthdate"
+    style="margin-top:6px; width:100%;">
+</label>
+      <input class="auth-input" type="email" id="authEmail"
+        placeholder="Email address" autocomplete="email">
+      <input class="auth-input" type="password" id="authPassword"
+        placeholder="Password" autocomplete="current-password">
+      <div id="forgotLink" style="display:none; text-align:right; margin-top:-4px;">
+  <button onclick="handleForgotPassword()" style="background:none; border:none; font-size:12px; color:var(--heart); font-weight:700; text-decoration:underline; cursor:pointer;">
+    Forgot password?
+  </button>
+</div>
+      <div class="auth-error" id="authError"></div>
+      <button class="auth-submit" id="authSubmit" onclick="handleAuth()">
+        <div class="btn-spinner"></div>
+        <span class="btn-label">Sign In</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── GALLERY PANEL ───────────────────────────────────── -->
+  <div class="gallery-panel" id="galleryPanel">
+    <div class="panel-header">
+      <span>📸 Bella's Gallery</span>
+      <button class="panel-close" onclick="closeGallery()">✕</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-empty">No photos yet — chat with Bella! 💜</div>
+    </div>
+  </div>
+
+  <!-- ── HEARTS PANEL ────────────────────────────────────── -->
+  <div class="hearts-panel" id="heartsPanel">
+    <div class="panel-header">
+      <span>💜 Your Hearts</span>
+      <button class="panel-close" onclick="closeHeartsPanel()">✕</button>
+    </div>
+    <div class="hearts-body">
+
+      <div class="hearts-balance-card">
+        <div class="hb-icon">💜</div>
+        <div class="hb-count" id="hpBalanceNum">—</div>
+        <div class="hb-label">Hearts remaining today</div>
+        <div class="hb-reset">Resets every midnight</div>
+      </div>
+
+      <div class="hearts-section">
+        <div class="section-title">How hearts are spent</div>
+        <div class="hbr-row">
+          <span>💬 Every 20 messages</span>
+          <span class="hbr-cost">−1 💜</span>
+        </div>
+        <div class="hbr-row">
+          <span>🖼️ Each image generated</span>
+          <span class="hbr-cost">−1 💜</span>
+        </div>
+      </div>
+
+      <div class="hearts-section">
+        <div class="section-title">Daily allowance</div>
+        <div class="hdi-row"><span>Normal account</span>   <span class="hdi-val">10 💜 / day</span></div>
+        <div class="hdi-row"><span>★ Premium account</span><span class="hdi-val">30 💜 / day</span></div>
+        <div class="hdi-row" id="yourPlanRow">
+          <span>Your plan</span>
+          <span class="hdi-val" id="yourPlanVal">—</span>
+        </div>
+      </div>
+
+      <div class="hearts-section">
+        <div class="section-title">Earn more hearts</div>
+        <div class="had-sub" style="font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:500;">
+          Watch a short ad to earn +3 hearts instantly.
+        </div>
+        <button class="watch-ad-btn" id="watchAdBtn" onclick="watchAd()">
+          ▶ Watch Ad — Earn +3 💜
+        </button>
+        <div class="adsense-slot">
+          <ins class="adsbygoogle"
+               style="display:block;width:100%;min-height:60px;"
+               data-ad-client="ca-pub-6763552907794945"
+               data-ad-slot="7144332734"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+        <div class="ad-note" id="adNote"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SETTINGS PANEL ──────────────────────────────────── -->
+  <div class="settings-panel" id="settingsPanel">
+    <div class="panel-header">
+      <span>⚙️ Settings</span>
+      <button class="panel-close" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="settings-body">
+
+      <!-- Push Notifications -->
+      <div class="settings-section">
+        <div class="section-title">Notifications</div>
+        <div class="push-notif-card">
+          <div class="push-notif-icon">🔔</div>
+          <div class="push-notif-text">
+            <strong>Surprise messages</strong><br>
+            Let Bella reach you even when the app is closed.
+          </div>
+        </div>
+        <button class="watch-ad-btn" id="pushEnableBtn" onclick="requestPushPermission()">🔔 Enable Notifications</button>
+        <div class="ad-note" id="pushNote" style="margin-top:8px;"></div>
+      </div>
+
+      <!-- Theme picker -->
+      <div class="settings-section">
+        <div class="section-title">Theme</div>
+        <div class="theme-grid" id="themeGrid"></div>
+      </div>
+
+      <!-- App settings -->
+      <div class="settings-section">
+        <div class="section-title">App</div>
+
+        <div class="settings-row">
+          <div class="settings-row-label"><span>⌨️</span> Typing sound</div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleTypingSound" onchange="onToggleTypingSound(this)">
+            <div class="toggle-track"></div>
+          </label>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-label"><span>📳</span> Vibration</div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleVibration" onchange="onToggleVibration(this)">
+            <div class="toggle-track"></div>
+          </label>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row-label"><span>🎵</span> Background music</div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="toggleBgMusic" onchange="onToggleBgMusic(this)">
+            <div class="toggle-track"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pollinations credit -->
+      <div class="pollinations-credit">
+        <div class="pollinations-logo">🌸</div>
+        <div class="pollinations-text">
+          Images powered by <strong>Pollinations AI</strong> — a free, open-source image generation platform.
+          Their incredible work makes Bella's photos possible.
+        </div>
+        <a class="pollinations-link" href="https://pollinations.ai" target="_blank" rel="noopener">
+          Visit Pollinations.ai ↗
+        </a>
+      </div>
+
+      <!-- About -->
+      <div class="settings-section">
+        <div class="section-title">About</div>
+        <div class="settings-row">
+          <div class="settings-row-label"><span>💜</span> Bella version</div>
+          <span style="font-size:12px;color:var(--muted);font-weight:700;">v2.0</span>
+        </div>
+        <div class="settings-row">
+          <div class="settings-row-label"><span>🤖</span> Powered by</div>
+          <span style="font-size:11px;color:var(--muted);font-weight:600;">Qwen + Pollinations</span>
+        </div>
+      </div>
+
+      
+  <div class="settings-section" style="margin-top:4px;">
+  <div class="section-title">Legal</div>
+  <a href="privacy.html" target="_blank" class="settings-row" style="text-decoration:none;display:flex;justify-content:space-between;align-items:center;">
+    <div class="settings-row-label"><span>🔒</span> Privacy Policy</div>
+    <span style="font-size:12px;color:var(--muted);font-weight:700;">View ↗</span>
+  </a>
+  <div class="settings-row" style="justify-content:space-between;">
+    <div class="settings-row-label"><span>✉️</span> Support</div>
+    <a href="mailto:user.alpha0x44@gmail.com" style="font-size:11px;color:var(--heart);font-weight:700;text-decoration:none;">user.alpha0x44@gmail.com</a>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+  
+  
+  <!-- ── CONFIRM CLEAR ────────────────────────────────────── -->
+  <div class="confirm-dialog" id="confirmDialog">
+    <div class="confirm-box">
+      <h3>Clear everything?</h3>
+      <p>All messages and photos will be permanently deleted. This cannot be undone.</p>
+      <div class="confirm-actions">
+        <button class="btn-cancel" onclick="closeConfirm()">Cancel</button>
+        <button class="btn-clear"  onclick="executeClear()">Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BIRTHDAY MODAL ───────────────────────────────────── -->
+  <div class="birthday-modal" id="birthdayModal">
+    <div class="birthday-box">
+      <div class="birthday-emoji">🎂</div>
+      <div class="birthday-title">Happy Birthday!</div>
+      <div class="birthday-msg">
+        Wishing you the most wonderful day, <strong id="birthdayName"></strong>! 💜
+        Bella loves having you here and hopes today brings you so much joy 🎉🌸
+      </div>
+      <button class="birthday-btn" onclick="closeBirthdayModal()">Thank you Bella! 💜</button>
+    </div>
+  </div>
+
+  <!-- ── PROFILE PANEL ───────────────────────────────────── -->
+  <div class="settings-panel" id="profilePanel">
+    <div class="panel-header">
+      <span>👤 Your Profile</span>
+      <button class="panel-close" onclick="closeProfile()">✕</button>
+    </div>
+    <div class="settings-body">
+
+      <!-- Avatar picker -->
+      <div class="settings-section">
+        <div class="section-title">Avatar</div>
+        <div class="avatar-grid">
+          <div class="avatar-chip active" data-avatar="👩‍💼" onclick="selectAvatar(this)">👩‍💼</div>
+          <div class="avatar-chip" data-avatar="🧑‍🎤" onclick="selectAvatar(this)">🧑‍🎤</div>
+          <div class="avatar-chip" data-avatar="🧑‍💻" onclick="selectAvatar(this)">🧑‍💻</div>
+          <div class="avatar-chip" data-avatar="🧙" onclick="selectAvatar(this)">🧙</div>
+          <div class="avatar-chip" data-avatar="🦸" onclick="selectAvatar(this)">🦸</div>
+          <div class="avatar-chip" data-avatar="🐱" onclick="selectAvatar(this)">🐱</div>
+          <div class="avatar-chip" data-avatar="🐼" onclick="selectAvatar(this)">🐼</div>
+          <div class="avatar-chip" data-avatar="🌸" onclick="selectAvatar(this)">🌸</div>
+        </div>
+      </div>
+
+      <!-- Name -->
+      <div class="settings-section">
+        <div class="section-title">Display Name</div>
+        <input class="auth-input" type="text" id="profileNameInput" placeholder="Your name" style="margin-bottom:0;">
+      </div>
+
+      <!-- Birthday -->
+      <div class="settings-section">
+        <div class="section-title">🎂 Birthday</div>
+        <label style="font-size:12px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px;">
+          Update to let Bella celebrate with you!
+        </label>
+        <input class="auth-input" type="date" id="profileBirthdateInput" style="margin-bottom:0;">
+      </div>
+
+      <button class="auth-submit" onclick="saveProfile()" style="margin-top:8px;">
+        <span class="btn-label">Save Changes</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── PREMIUM PANEL ────────────────────────────────────── -->
+  <div class="settings-panel" id="premiumPanel">
+    <div class="panel-header">
+      <span>🌟 Go Premium</span>
+      <button class="panel-close" onclick="closePremium()">✕</button>
+    </div>
+    <div class="settings-body">
+
+      <div class="premium-hero">
+        <div class="premium-hero-icon">💜</div>
+        <div class="premium-hero-title">Unlock Premium</div>
+        <div class="premium-hero-sub">More hearts, more Bella — every single day.</div>
+      </div>
+
+      <div class="settings-section">
+        <div class="section-title">What you get</div>
+        <div class="premium-perk"><span>💜</span><span>30 hearts/day (vs 10 on free)</span></div>
+        <div class="premium-perk"><span>🖼️</span><span>3× more AI photos per day</span></div>
+        <div class="premium-perk"><span>⭐</span><span>★PRO badge on your profile</span></div>
+        <div class="premium-perk"><span>🔔</span><span>Priority surprise messages</span></div>
+      </div>
+
+      <div class="settings-section">
+        <div class="section-title">Choose a plan</div>
+        <button class="premium-plan-btn" data-plan="monthly" onclick="activatePremium('monthly')">
+          <div class="plan-label">Monthly</div>
+          <div class="plan-price">$4.99 / month</div>
+        </button>
+        <button class="premium-plan-btn premium-plan-featured" data-plan="yearly" onclick="activatePremium('yearly')">
+          <div class="plan-label">Yearly <span class="plan-badge">Save 40%</span></div>
+          <div class="plan-price">$35.99 / year</div>
+        </button>
+        <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px;font-weight:500;">
+          Cancel anytime · Secure payment · Instant activation
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /.chat-container -->
+
+<!-- ── LIGHTBOX ────────────────────────────────────────────── -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="Full size" onclick="event.stopPropagation()">
+</div>
+
+<!-- ── SCRIPTS ─────────────────────────────────────────────── -->
+<!-- Firebase module (must load first) -->
+<script type="module" src="js/firebase.js"></script>
+<!-- App logic -->
+<script src="js/app.js" defer></script>
+
+</body>
+</html>
